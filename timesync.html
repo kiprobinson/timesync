@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Timesync</title>
+    <style>
+      html {
+        background-color: black;
+        color: white;
+        font-family:'Courier New', Courier, monospace, serif;
+        font-weight: bold;
+        font-size: 8vw;
+      }
+      body {
+        padding: 1rem;
+        margin: 0;
+      }
+      p {
+        padding: 0;
+        padding-bottom: 1rem;
+        margin: 0;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
+    <script>
+      const render = () => {
+        const ts = luxon.DateTime.now().setZone("America/New_York").toISO();
+        const date = ts.slice(0, 10);
+        const time = ts.slice(11, 23);
+        const offset = ts.slice(-6);
+        document.getElementById('timestamp').innerText = date + ' ' + time + ' ' + offset;
+        requestAnimationFrame(render);
+      }
+      document.addEventListener("DOMContentLoaded", render);
+    </script>
+  </head>
+  <body>
+    <p>ET time:</p>
+    <p id="timestamp">
+      loading...
+    </p>
+  </body>
+</html>
