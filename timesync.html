@@ -26,18 +26,13 @@
     <script src="https://cdn.jsdelivr.net/npm/luxon@3.4.4/build/global/luxon.min.js"></script>
     <script>
       const render = () => {
-        const ts = luxon.DateTime.now().setZone("America/New_York").toISO();
-        const date = ts.slice(0, 10);
-        const time = ts.slice(11, 23);
-        const offset = ts.slice(-6);
-        document.getElementById('timestamp').innerText = date + ' ' + time + ' ' + offset;
+        document.getElementById('timestamp').innerText = luxon.DateTime.now().toFormat('yyyy-MM-dd HH:mm:ss.SSS ZZ (ZZZZ)');
         requestAnimationFrame(render);
       }
       document.addEventListener("DOMContentLoaded", render);
     </script>
   </head>
   <body>
-    <p>ET time:</p>
     <p id="timestamp">
       loading...
     </p>
